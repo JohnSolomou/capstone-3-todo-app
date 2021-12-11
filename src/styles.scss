@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+body {
+  background-color: green;
+  margin: 0;
+  padding: 0;
+
+  height: 100vh;
+}
+.textwhite {
+  color: white;
+}
+
+.todo-list {
+  background-color: white;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #efefef;
+  box-shadow:
+  /* The top layer shadow */ 0 1px 1px rgba(0, 0, 0, 0.15),
+    /* The second layer */ 0 10px 0 -5px #eee,
+    /* The second layer shadow */ 0 10px 1px -4px rgba(0, 0, 0, 0.15),
+    /* The third layer */ 0 20px 0 -10px #eee,
+    /* The third layer shadow */ 0 20px 1px -9px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+}
+.photo {
+  height: 200px;
+  width: 200px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* padding: 30px 20px 0; */
+  width: 80%;
+  border-bottom: 1px solid #cecece;
+  font-family: "Pacifico", cursive;
+  /* Roboto, sans-serif; */
+  font-weight: 100;
+  font-size: 15px;
+  color: #333333;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+input[type="checkbox"]:focus {
+  outline: 0;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9c9c9c;
+  background-color: #eaeaea;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login
+  .container
+  #login-row
+  #login-column
+  #login-box
+  #login-form
+  #register-link {
+  margin-top: -85px;
+}
+
+@mixin mq($args...) {
+  $media-type: "only screen";
+  $media-type-key: "media-type";
+  $args: keywords($args);
+  $expr: "";
+
+  @if map-has-key($args, $media-type-key) {
+    $media-type: map-get($args, $media-type-key);
+    $args: map-remove($args, $media-type-key);
+  }
+
+  @each $key, $value in $args {
+    @if $value {
+      $expr: "#{$expr} and (#{$key}: #{$value})";
+    }
+  }
+}
+// --- iphone6 -----------------------------------------------------------------
+
+@mixin iphone6($orientation: false) {
+  $min: 375px;
+  $max: 667px;
+  $pixel-ratio: 2;
+
+  @include mq(
+    $min-device-width: $min,
+    $max-device-width: $max,
+    $orientation: $orientation,
+    $-webkit-device-pixel-ratio: $pixel-ratio
+  ) {
+    .todo-list {
+      background-color: white;
+      margin: auto;
+      width: 80%;
+    }
+    .row {
+      padding: none;
+    }
+  }
+}
+
+// --- iphone6 plus ------------------------------------------------------------
+
+@mixin iphone6-plus($orientation: false) {
+  $min: 414px;
+  $max: 736px;
+  $pixel-ratio: 3;
+
+  @include mq(
+    $min-device-width: $min,
+    $max-device-width: $max,
+    $orientation: $orientation,
+    $-webkit-device-pixel-ratio: $pixel-ratio
+  ) {
+    .todo-list {
+      background-color: white;
+      margin: auto;
+      width: 80%;
+    }
+    .row {
+      padding: none;
+    }
+  }
+}
+
+// --- ipad (all) --------------------------------------------------------------
+
+@mixin ipad($orientation: false) {
+  $min: 768px;
+  $max: 1024px;
+
+  @include mq(
+    $min-device-width: $min,
+    $max-device-width: $max,
+    $orientation: $orientation
+  ) {
+    .todo-list {
+      background-color: white;
+      margin: auto;
+      width: 80%;
+    }
+    .row {
+      padding: none;
+    }
+  }
+}
+
+// --- ipad-retina -------------------------------------------------------------
+
+@mixin ipad-retina($orientation: false) {
+  $min: 768px;
+  $max: 1024px;
+  $pixel-ratio: 2;
+
+  @include mq(
+    $min-device-width: $min,
+    $max-device-width: $max,
+    $orientation: $orientation,
+    $-webkit-device-pixel-ratio: $pixel-ratio
+  ) {
+    .todo-list {
+      background-color: white;
+      margin: auto;
+      width: 80%;
+    }
+    .row {
+      padding: none;
+    }
+  }
+}
+
+// --- orientation -------------------------------------------------------------
+
+@mixin landscape() {
+  @include mq($orientation: landscape) {
+    .todo-list {
+      background-color: white;
+      margin: auto;
+      width: 80%;
+    }
+    .row {
+      padding: none;
+    }
+  }
+}
+
+@mixin portrait() {
+  @include mq($orientation: portrait) {
+    .todo-list {
+      background-color: white;
+      margin: auto;
+      width: 80%;
+    }
+    .row {
+      padding: none;
+    }
+  }
+}
+
+@mixin linearGradient($top, $bottom) {
+  background: $top; /* Old browsers */
+  background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, $top),
+    color-stop(100%, $bottom)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    $top 0%,
+    $bottom 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $top 0%, $bottom 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $top 0%, $bottom 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+.color {
+  margin: 0 auto;
+  @include linearGradient(#0cadbd, #ddd);
+}

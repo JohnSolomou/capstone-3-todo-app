@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+body {
+  background-color: green;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.textwhite {
+  color: white;
+}
+
+.todo-list {
+  background-color: white;
+  margin: auto;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #efefef;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee, 0 10px 1px -4px rgba(0, 0, 0, 0.15), 0 20px 0 -10px #eee, 0 20px 1px -9px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee, 0 10px 1px -4px rgba(0, 0, 0, 0.15), 0 20px 0 -10px #eee, 0 20px 1px -9px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+}
+
+.photo {
+  height: 200px;
+  width: 200px;
+}
+
+.todo-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* padding: 30px 20px 0; */
+  width: 80%;
+  border-bottom: 1px solid #cecece;
+  font-family: "Pacifico", cursive;
+  /* Roboto, sans-serif; */
+  font-weight: 100;
+  font-size: 15px;
+  color: #333333;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+input[type="checkbox"]:focus {
+  outline: 0;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9c9c9c;
+  background-color: #eaeaea;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+
+#login
+.container
+#login-row
+#login-column
+#login-box
+#login-form
+#register-link {
+  margin-top: -85px;
+}
+
+.color {
+  margin: 0 auto;
+  background: #0cadbd;
+  /* Old browsers */
+  /* FF3.6+ */
+  /* Chrome,Safari4+ */
+  /* Chrome10+,Safari5.1+ */
+  /* Opera 11.10+ */
+  /* IE10+ */
+  background: -webkit-gradient(linear, left top, left bottom, from(#0cadbd), to(#ddd));
+  background: linear-gradient(to bottom, #0cadbd 0%, #ddd 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */
+}
+/*# sourceMappingURL=styles.css.map */

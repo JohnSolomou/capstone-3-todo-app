@@ -13,24 +13,21 @@ function Header() {
           HomePage
         </Link>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler "
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNavAltMarkup"
-        >
+        <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
           {auth.currentUser ? (
             <div className="navbar-nav">
               <Link className="nav-item nav-link" to="/profile">
-                To Do List
+                Go To List
               </Link>
               <button
                 className=" btn-outline-dark "

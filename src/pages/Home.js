@@ -10,7 +10,7 @@ export default class HomePage extends Component {
       <div>
         <Header></Header>
         <section>
-          <div class="text-center">
+          <div class="text-center ">
             <h2>Organize it all </h2>
             <h2> With a To Do List </h2>
             <p>
@@ -19,7 +19,7 @@ export default class HomePage extends Component {
                 Sign Up
               </a>
             </p>
-            <img src="images/todo checklist.png" class="rounded" alt="..." />
+            <img className="photo" src="images/todo checklist.png" alt="..." />
           </div>
         </section>
         <Footer></Footer>

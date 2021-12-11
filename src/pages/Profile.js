@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { auth, firestore } from "../services/firebase";
+
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class Profile extends Component {
   constructor() {
@@ -15,16 +19,15 @@ export default class Profile extends Component {
       note: {},
       name: "",
       location: "",
-      date: "",
+      date: new Date(),
       list: [],
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.submitData = this.submitData.bind(this);
     this.updateDoc = this.updateDoc.bind(this);
     this.DeleteDoc = this.DeleteDoc.bind(this);
     this.getList = this.getList.bind(this);
-    // this.createNote = this.createNote.bind(this);
-    // this.editNote = this.editNote.bind(this);
   }
 
   handleChange(e) {
@@ -34,9 +37,11 @@ export default class Profile extends Component {
       this.setState({ name: value });
     } else if (name === "location") {
       this.setState({ location: value });
-    } else if (name === "date") {
-      this.setState({ date: value });
     }
+    //  else if (name === "date") {
+    //   this.setState({ date: value });
+    // }
+    console.log("========", e);
   }
 
   async submitData(e) {
@@ -53,6 +58,10 @@ export default class Profile extends Component {
       })
       .catch((e) => console.log("add error", e));
     this.getList();
+  }
+  handleDateChange(date) {
+    console.log(date);
+    this.setState({ date: date });
   }
 
   updateDoc(e, id) {
@@ -73,28 +82,31 @@ export default class Profile extends Component {
     });
     this.getList();
   }
+
+  getOnlyDate(dateVal) {
+    let res = dateVal;
+    console.log("=========", dateVal);
+    let tempArr = dateVal.split(",");
+    if (tempArr.length > 1) {
+      res = tempArr[0];
+    }
+
+    return res;
+  }
+
   getList() {
     let list = [];
 
-    //
     let today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    if (month < 10) {
-      month = "0" + month;
-    }
-    let date = today.getDate();
-    if (date < 10) {
-      date = "0" + date;
-    }
 
-    let strToday = month + "" + date + "" + year;
-
-    // result means 11272021
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    let todayStart = today.setHours(0, 0, 0, 0);
+    // let todayd = todayStart.toLocaleString();
+    let tomorrowStart = tomorrow.setHours(0, 0, 0, 0);
 
     firestore
       .collection("user")
-      .where("date", "==", strToday)
       .get()
       .then((snapshot) => {
         console.log("snapshot +++", snapshot);
@@ -103,76 +115,39 @@ export default class Profile extends Component {
 
           let data = doc.data();
           let data_id = doc.id;
-          list.push({
-            id: data_id,
-            name: data.name,
-            location: data.location,
-            date: data.date,
-          });
+
+          console.log(data.date.seconds);
+          let dataDate = new Date(data.date.seconds * 1000);
+          let fireStoreDate = dataDate.getTime();
+          console.log(dataDate.toLocaleString());
+          if (fireStoreDate >= todayStart && fireStoreDate < tomorrowStart) {
+            list.push({
+              id: data_id,
+              name: data.name,
+              location: data.location,
+              date: this.getOnlyDate(dataDate.toLocaleString()),
+            });
+          }
         });
 
         console.log("result of list");
         console.log(list);
-        // snapshot.forEach((doc) => {
-        //   console.log("user data doc +++", doc.id, doc.data());
 
-        //   let data = doc.data();
-        //   let data_id = doc.id;
-        //   list.push({
-        //     id: data_id,
-        //     name: data.name,
-        //     location: data.location,
-        //     date: data.date,
-        //   });
-        // });
-
-        // in react it is good than other
-        // this.setState{
-        //   notes: list
-        // }
         this.setState({
           notes: [...list],
         });
-        // this.setState({ notes: list });
       });
   }
 
   componentDidMount() {
     this.getList();
-
-    // update
-    // firestore.doc("user/{docId}").update({ name: 'updatedValue});
   }
-  // getPickup() {
-  //   const db = firebase.database();
-  //   const events = db.child("events");
-  //   const query = events.orderByChild("name");
-
-  //   query.on("value", (snap) => {
-  //     //render data to html
-  //   });
-  // }
 
   render() {
     return (
-      <div className="todo-list">
+      <div className="todo-list ">
         <Header></Header>
-        {/* {this.state.notes.map((note) => {
-          return <div key={note.note_id}>{note.content}</div>;
-        })} */}
-        {/* // I cannot hear you well so could you type on zoom chat? HERE IS
-        EXAMPLE OF LIST
-        {this.state.notes.map((note, index) => {
-          return (
-            <div key={index}>
-              {note.location}
-              <br />
-              {note.name}
-              <br />
-              {note.date}
-            </div>
-          );
-        })} */}
+
         <div>
           Login in as: <strong>{this.state.user.email}</strong>
         </div>
@@ -193,14 +168,10 @@ export default class Profile extends Component {
             placeholder="add location "
             onChange={(e) => this.handleChange(e)}
           />
-          <input
-            required
-            type="text"
-            name="date"
-            id="date"
-            placeholder="add date "
-            onChange={(e) => this.handleChange(e)}
-          />
+          <DatePicker
+            selected={this.state.date}
+            onChange={(date) => this.handleDateChange(date)}
+          ></DatePicker>
         </div>
         <div className="row">
           <button
@@ -211,30 +182,32 @@ export default class Profile extends Component {
             Add to list
           </button>
         </div>
-        <div className="row ">
+        <div className="row color">
           {this.state.notes.length &&
             this.state.notes.map((user) => {
               return (
-                <>
-                  <div>
-                    <p className="todo-item">
-                      <input type="checkbox" className="" />
-                      <p>To Do: {user?.name}</p>
+                <div class="card todo-item" key={this.state.notes.id}>
+                  <div class="card-body">
+                    <h5 class="card-title"> To Do Item</h5>
 
-                      <p>Location: {user?.location}</p>
+                    <input type="checkbox" className="" />
+                    <p class="card-text">To Do: {user?.name}</p>
 
-                      <p>Date:{user?.date}</p>
-                    </p>
+                    <p class="card-text">Location: {user?.location}</p>
+
+                    <p class="card-text">Date:{user?.date}</p>
                   </div>
+
                   <div d-grid gap-2 d-md-flex justify-content-md-end>
                     <button
                       type="button"
-                      className="  btn-primary me-md-2"
+                      className="  justify-content-center btn-primary me-md-2"
                       onClick={(e) => this.updateDoc(e, user.id)}
                     >
-                      update
+                      Update
                     </button>
                     <button
+                      justify-content-center
                       type="button"
                       className=" btn-danger "
                       onClick={(e) => this.DeleteDoc(e, user.id)}
@@ -242,7 +215,7 @@ export default class Profile extends Component {
                       Delete
                     </button>
                   </div>
-                </>
+                </div>
               );
             })}
         </div>
