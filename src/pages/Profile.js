@@ -145,7 +145,7 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className="todo-list ">
+      <div className="todo-list  ">
         <Header></Header>
 
         <div>
@@ -182,11 +182,13 @@ export default class Profile extends Component {
             Add to list
           </button>
         </div>
-        <div className="row color">
+        <div className="row "    >
           {this.state.notes.length &&
             this.state.notes.map((user) => {
               return (
-                <div class="card todo-item" key={this.state.notes.id}>
+                <div class="card todo-list color"
+             
+                key={this.state.notes.id}>
                   <div class="card-body">
                     <h5 class="card-title"> To Do Item</h5>
 
