@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { auth } from "./services/firebase";
+import Todo from './components/Todo'
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -29,6 +30,7 @@ function PrivateRoute({ component: Component, authenticated, ...rest }) {
 }
 function PublicRoute({ component: Component, authenticated, ...rest }) {
   return (
+    // <Todo/>
     <Route
       {...rest}
       render={(props) =>
@@ -67,7 +69,7 @@ class App extends Component {
   }
   render() {
     return this.state.loading === true ? (
-      <h2>Loading...</h2>
+      <h2 >Loading...</h2>
     ) : (
       <Router>
         <Switch>

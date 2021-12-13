@@ -7,10 +7,10 @@ import "../App.css";
 export default class HomePage extends Component {
   render() {
     return (
-      <div>
+      <div data-testid="home-1">
         <Header></Header>
         <section>
-          <div class="text-center ">
+          <div class="text-center" >
             <h2>Organize it all </h2>
             <h2> With a To Do List </h2>
             <p>

@@ -7,8 +7,8 @@ import { auth } from "../services/firebase";
 import "bootstrap/dist/css/bootstrap.css";
 function Header() {
   return (
-    <header>
-      <nav className="navbar navbar-expand-md navbar-light bg-light">
+    <header  >
+      <nav data-testid="header-1"className="navbar navbar-expand-md navbar-light bg-light">
         <Link className="navbar-brand m-2" to="/">
           HomePage
         </Link>
