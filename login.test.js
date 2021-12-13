@@ -1,3 +1,8 @@
-import { Login } from "./src/pages/Login";
+import {render,screen, cleanup} from "@testting-library/react"
+import Login from "../Login"
 
-test("Login", () => {});
+
+test('should render Login component',=>{
+render (<Login/>)
+const loginElement = screen.getAllByTestId('login-1')
+})
