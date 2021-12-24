@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import { signin } from "../helpers/auth";
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "../App.css";
 export default class Login extends Component {
   constructor() {
@@ -25,8 +26,13 @@ export default class Login extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({ error: "" });
+    const authentication = getAuth();
     try {
-      await signin(this.state.email, this.state.password);
+      await signInWithEmailAndPassword(
+        authentication,
+        this.state.email,
+        this.state.password
+      );
     } catch (error) {
       this.setState({ error: error.message });
     }
@@ -40,10 +46,10 @@ export default class Login extends Component {
         <div className="container">
           <div
             id="login-row"
-            class="row justify-content-center align-items-center"
+            className="row justify-content-center align-items-center"
           >
-            <div id="login-column" class="col-md-6">
-              <div id="login-box" class="col-md-12">
+            <div id="login-column" className="col-md-6">
+              <div id="login-box" className="col-md-12">
                 <form
                   id="login-form"
                   className="form "

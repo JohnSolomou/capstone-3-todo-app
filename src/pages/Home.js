@@ -10,12 +10,12 @@ export default class HomePage extends Component {
       <div data-testid="home-1">
         <Header></Header>
         <section>
-          <div class="text-center" >
+          <div className="text-center">
             <h2>Organize it all </h2>
             <h2> With a To Do List </h2>
             <p>
               Don't have an account?{" "}
-              <a class="btn btn-primary" href="/Signup" role="button">
+              <a className="btn btn-primary" href="/Signup" role="button">
                 Sign Up
               </a>
             </p>

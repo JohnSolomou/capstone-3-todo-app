@@ -14,9 +14,9 @@ function Header() {
         data-testid="header-1"
         className="navbar navbar-expand-md navbar-light bg-light"
       >
-        <Link className="navbar-brand m-2" to="/">
+        {/* <Link className="navbar-brand m-2" to="/HomeLoggedin">
           HomePage
-        </Link>
+        </Link> */}
         <button
           className="navbar-toggler "
           type="button"

@@ -9,8 +9,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import { auth } from "./services/firebase";
-import Todo from './components/Todo'
+import { getAuth } from "firebase/auth";
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -53,6 +52,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const auth = getAuth();
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -69,7 +69,7 @@ class App extends Component {
   }
   render() {
     return this.state.loading === true ? (
-      <h2 >Loading...</h2>
+      <h2>Loading...</h2>
     ) : (
       <Router>
         <Switch>

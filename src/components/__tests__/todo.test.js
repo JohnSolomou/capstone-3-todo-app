@@ -1,17 +1,29 @@
-import { render, screen, cleanup} from "@testing-library/react"
-import Todo from '../Todo'
-import '@testing-library/jest-dom/extend-expect';
-// import Header from '../Header'
+import { render, screen, cleanup } from "@testing-library/react";
+import Header from "../Header";
+import { BrowserRouter } from "react-router-dom";
+import Footer from "../Footer";
 
-test('should render todo component', ()=> {
-render(<Todo/>);
-const todoElement = screen.getByTestId('todo-1');
-expect(todoElement).toBeInTheDocument();
-expect(todoElement).toHaveTextContent('Hello World')
-})
+import HomePage from "../../pages/Home";
+test("should render Header component", () => {
+  render(
+    <BrowserRouter>
+      <Header />
+    </BrowserRouter>
+  );
+});
 
-// test('should render Header component',()=>{
-//   render(<Header/>);
-//   const headerElement = screen>getByTestId('header-1')
-//   expect(headerElement).toHaveTextContent('HomePage')
-// })
+test("should render Footer component", () => {
+  render(
+    <BrowserRouter>
+      <Footer />
+    </BrowserRouter>
+  );
+});
+
+test("should render HomePage component", () => {
+  render(
+    <BrowserRouter>
+      <HomePage />
+    </BrowserRouter>
+  );
+});

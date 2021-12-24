@@ -1,8 +1,9 @@
 // src/pages/Profile.js
 import React, { Component } from "react";
-import Header from "../components/Header";
+import Header2 from "../components/Header2";
 import Footer from "../components/Footer";
-import { auth, firestore } from "../services/firebase";
+import firestore from "../firebase-config";
+import { getAuth } from "firebase/auth";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -13,7 +14,7 @@ export default class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      user: auth.currentUser,
+      user: getAuth().currentUser,
       notes: [],
       content: "",
       note: {},
@@ -146,7 +147,7 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="todo-list  ">
-        <Header></Header>
+        <Header2></Header2>
 
         <div>
           Login in as: <strong>{this.state.user.email}</strong>
@@ -182,13 +183,11 @@ export default class Profile extends Component {
             Add to list
           </button>
         </div>
-        <div className="row "    >
+        <div className="row ">
           {this.state.notes.length &&
             this.state.notes.map((user) => {
               return (
-                <div class="card todo-list color"
-             
-                key={this.state.notes.id}>
+                <div class="card todo-list color" key={this.state.notes.id}>
                   <div class="card-body">
                     <h5 class="card-title"> To Do Item</h5>
 

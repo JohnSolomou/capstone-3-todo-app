@@ -1,4 +1,16 @@
 {
   "git.ignoreLimitWarning": true,
-  "cSpell.words": ["firestore"]
+  "cSpell.words": [
+    "appspot",
+    "browserslist",
+    "datepicker",
+    "firebaseapp",
+    "firestore",
+    "JICCH",
+    "mediaqueries",
+    "Pdtnttli",
+    "TJJH"
+  ],
+  "jest.jestCommandLine": "jest",
+  "liveServer.settings.port": 5501
 }
