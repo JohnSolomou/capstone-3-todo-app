@@ -1,6 +1,6 @@
 // src/pages/Profile.js
 import React, { Component } from "react";
-import Header2 from "../components/Header2";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import firestore from "../firebase-config";
 import { getAuth } from "firebase/auth";
@@ -147,7 +147,7 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="todo-list  ">
-        <Header2></Header2>
+        <Header></Header>
 
         <div>
           Login in as: <strong>{this.state.user.email}</strong>
@@ -184,7 +184,8 @@ export default class Profile extends Component {
           </button>
         </div>
         <div className="row ">
-          {this.state.notes.length &&
+          {
+            // this.state.notes.length &&
             this.state.notes.map((user) => {
               return (
                 <div class="card todo-list color" key={this.state.notes.id}>
@@ -218,7 +219,8 @@ export default class Profile extends Component {
                   </div>
                 </div>
               );
-            })}
+            })
+          }
         </div>
         <Footer></Footer>
       </div>
