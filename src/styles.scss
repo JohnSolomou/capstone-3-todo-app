@@ -75,6 +75,7 @@ input[type="checkbox"]:focus {
 div.row {
   align-items: center;
   min-width: 300px;
+  max-width: 300px;
 }
 @mixin linearGradient($top, $bottom) {
   background: $top; /* Old browsers */
